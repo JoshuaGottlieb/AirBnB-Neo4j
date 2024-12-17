@@ -18,7 +18,7 @@ One of the primary benefits of a graph database over a relational one is that mo
 
 An additional benefit of Neo4j is that nodes which have many copies of the same relation between each other are trivial to model. For example, each time a guest stays at a particular listing, there is a new relation between the guest and the listing which can simply be added as a new edge with an edge property denoting the date of the stay. This makes the graph database easy to scale and maintain overtime, compared to a relational database which may need updates across many tables to maintain consistency and currency.
 
-The selected properties for each node can be found in the [data preparation module](src/modules/database_population.py), with further explanations of each property available in the [source data dictionary from Inside AirBnB](https://docs.google.com/spreadsheets/d/1iWCNJcSutYqpULSQHlNyGInUvHg2BoUGoNRIGa6Szc4/).
+The selected properties for each node can be found in the [data preparation module](src/modules/database_population.py), with further explanations of each property available in the [data dictionary](src/Data-Dictionary.pdf) pdf.
 
 ## Repository Design
 
