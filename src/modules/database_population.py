@@ -48,31 +48,32 @@ def node_creation_props(node_type, row):
     
     return props
 
-def create_nodes(driver, node_type, df):
+def create_nodes(driver, node_type, df, database_name = 'neo4j'):
     n = len(df.index)
     for i, row in df.iterrows():
         print(f'Writing node {i + 1} / {n}.')
         props = node_creation_props(node_type, row)
         statement = f'CREATE (n:{node_type} $props) RETURN n'
         
-        with driver.session(database = 'neo4j') as session:
+        with driver.session(database = database_name) as session:
             result = session.run(statement, parameters = props).single()
         
     return
 
-def create_relationships_by_property(driver, relationship_type, node_from, node_to, on):
+def create_relationships_by_property(driver, relationship_type, node_from, node_to,
+                                     on, database_name = 'neo4j'):
     statement = f'MATCH (a:{node_from}), (b:{node_to}) '
     statement += f'WHERE (a.{on}) IS NOT NULL AND (b.{on}) IS NOT NULL AND a.{on} = b.{on} '
     statement += f'CREATE (a)-[:{relationship_type}]->(b);'
     
     print('Executing\n', statement)
     
-    with driver.session(database = 'neo4j') as session:
+    with driver.session(database = database_name) as session:
         result = session.run(statement).single()
     
     return
 
-def create_relationships_by_id(driver, relationship_type, id_, relation_dict):
+def create_relationships_by_id(driver, relationship_type, id_, relation_dict, database_name = 'neo4j'):
     start_type = relation_dict['start_node']['type']
     start_field = relation_dict['start_node']['field']
     start_key = id_
@@ -94,27 +95,26 @@ def create_relationships_by_id(driver, relationship_type, id_, relation_dict):
             props = {}
             statement += f'CREATE (a)-[:{relationship_type}]->(b);'
 
-#         print(statement)
-        with driver.session(database = 'neo4j') as session:
+        with driver.session(database = database_name) as session:
             result = session.run(statement, parameters = props).single()
     return
 
-def create_index_by_node(driver, index_name, node_type, on):
+def create_index_by_node(driver, index_name, node_type, on, database_name = 'neo4j'):
     statement = f'CREATE INDEX {index_name} FOR (n:{node_type}) on (n.{on})'
     
     print('Executing\n', statement)
 
-    with driver.session(database = 'neo4j') as session:
+    with driver.session(database = database_name) as session:
         result = session.run(statement).single()
         
     return
 
-def create_index_by_relation(driver, index_name, relation_type, on):
+def create_index_by_relation(driver, index_name, relation_type, on, database_name = 'neo4j'):
     statement = f'CREATE INDEX {index_name} FOR ()-[r:{relation_type}]-() ON (r.{on})'
     
     print('Executing\n', statement)
     
-    with driver.session(database = 'neo4j') as session:
+    with driver.session(database = database_name) as session:
         result = session.run(statement).single()
         
     return
