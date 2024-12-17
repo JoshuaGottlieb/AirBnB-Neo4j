@@ -8,15 +8,15 @@
 
 AirBnB is a company that facilitates the short term rental of properties to guests as an alternative to hotel stays. This project aims to analyze AirBnB's data to investigate the relationships between hosts, listings, and guests. A primary goal is to demonstrate potential applications of a graph database to extract insights from the data and facilitate viable real-world applications for tasks such as customer recommendation, customer profiling, marketing, and real-estate investment analysis.
 
-The data was obtained from [Inside AirBnB](https://insideairbnb.com/get-the-data/) and uses the data for New York City, New York. The two files used were listings.csv and reviews.csv and were accessed on December 14, 2024. These data files are saved under [data/raw](data/raw), compressed with the lzma algorithm to reduce file size.
+The data was obtained from [Inside AirBnB](https://insideairbnb.com/get-the-data/) and uses the data for New York City. The two files used were listings.csv and reviews.csv and were accessed on December 14, 2024. These data files are saved under [data/raw](data/raw), compressed with the lzma algorithm to reduce file size.
 
-## Reasons to Use Neo4j Over SQL and Graph Structure
+## Graph Structure and Reasons to Use Neo4j Over SQL
 
 ![](src/AirBnB-ERD.png)
 
-One of the primary benefits of a graph database over a relational one is that modeling data which is highly interconnected is simpler and more natural. Rather than having to create extra intermediate tables to model many-to-many relations, the relations can be added directly as additional edges between nodes. In theory, the data follows the above entity relation diagram; however, the data itself does not contain extensive information on reviews, such as ratings. It also does not contain information about stays such as duration. Therefore, the "reviews" data was used as a stand-in for guest stays at a particular listing.
+One of the primary benefits of a graph database over a relational one is that modeling data which is highly interconnected is simpler and more natural. Rather than having to create extra intermediate tables to model many-to-many relations, the relations can be added directly as additional edges between nodes. In theory, the data follows the above entity relation diagram; however, the data itself does not contain extensive information on reviews, such as ratings per review. It also does not contain information about stays, such as duration. Therefore, the "reviews" data was used as a stand-in for guest stays at a particular listing.
 
-An additional benefit of Neo4j is that nodes which have many copies of the same relation between each other are trivial to model. For example, each time a guest stays at a particular listing, there is a new relation between the guest and the listing which can simply be added as a new edge with an edge property denoting the date of the stay. This makes the graph database easy to scale and maintain overtime, compared to a relational database which may need updates across many tables to maintain consistency.
+An additional benefit of Neo4j is that nodes which have many copies of the same relation between each other are trivial to model. For example, each time a guest stays at a particular listing, there is a new relation between the guest and the listing which can simply be added as a new edge with an edge property denoting the date of the stay. This makes the graph database easy to scale and maintain overtime, compared to a relational database which may need updates across many tables to maintain consistency and currency.
 
 The selected properties for each node can be found in the [data preparation module](src/modules/database_population.py), with further explanations of each property available in the [source data dictionary from Inside AirBnB](https://docs.google.com/spreadsheets/d/1iWCNJcSutYqpULSQHlNyGInUvHg2BoUGoNRIGa6Szc4/).
 
