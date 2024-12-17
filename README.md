@@ -6,7 +6,7 @@
 
 ## Project Overview and Problem Definition
 
-AirBnB is a company that facilitates the short term rental of properties to guests as an alternative to hotel stays. This project aims to analyze AirBnB's data to investigate the relationships between hosts, listings, and guests. A primary goal is to demonstrate potential applications of a graph database to extract insights from the data and facilitate viable real-world applications for tasks such as customer recommendation, customer profiling, and real-estate desirability analysis.
+AirBnB is a company that facilitates the short term rental of properties to guests as an alternative to hotel stays. This project aims to analyze AirBnB's data to investigate the relationships between hosts, listings, and guests. A primary goal is to demonstrate potential applications of a graph database to extract insights from the data and facilitate viable real-world applications for tasks such as customer recommendation, customer profiling, marketing, and real-estate investment analysis.
 
 The data was obtained from [Inside AirBnB](https://insideairbnb.com/get-the-data/) and uses the data for New York City, New York. The two files used were listings.csv and reviews.csv and were accessed on December 14, 2024. These data files are saved under [data/raw](data/raw), compressed with the lzma algorithm to reduce file size.
 
