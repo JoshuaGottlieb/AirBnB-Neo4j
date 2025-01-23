@@ -1,9 +1,5 @@
 # Analysis of AirBnB Listing Data Using Neo4j
 
-## Class: CS 673 Scalable Databases - Fall 2024, Pace University
-## Instructor: Professor Anthony Escalona
-## Student: Joshua Gottlieb (joshuadavidgottlieb@gmail.com, jg05394n@pace.edu)
-
 ## Project Overview and Problem Definition
 
 AirBnB is a company that facilitates the short term rental of properties to guests as an alternative to hotel stays. This project aims to analyze AirBnB's data to investigate the relationships between hosts, listings, and guests. A primary goal is to demonstrate potential applications of a graph database to extract insights from the data and facilitate viable real-world applications for tasks such as customer recommendation, customer profiling, marketing, and real-estate investment analysis.
